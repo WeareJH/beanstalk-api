@@ -3,7 +3,7 @@
 npm-debug.log
 npm-log*
 node_modules
-test/
+/test/
 lib/specs/
 example.js
 creds.json

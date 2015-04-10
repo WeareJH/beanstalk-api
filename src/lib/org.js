@@ -12,9 +12,9 @@ module.exports = function (opts) {
     /**
      * NO defaults for the client config - just throw when omitted
      */
-    assert(opts.orgname,  'org must be set');
-    assert(opts.username, 'username must be set');
-    assert(opts.token,    'token must be set');
+    assert(opts.orgname,  '`orgname` must be set');
+    assert(opts.username, '`username` must be set');
+    assert(opts.token,    '`token` must be set');
 
     let org = objectAssign({}, defaults, opts);
 

@@ -13,7 +13,7 @@ var file = require("beanstalk-api/file");
  */
  
 var client = org({
-    org: "your-subdmain",
+    orgname: "your-subdmain",
     username: "some-user",
     token: "your-api-token",
 });
