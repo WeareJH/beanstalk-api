@@ -17,15 +17,18 @@ function (opts) {
                 return opts.error(apierror, response);
             }
 
+            if (!isJson(response)) {
+                let apierror = new Error('url: ' + response.req.path + ' did not return JSON - please check your configuration');
+                return opts.error(apierror, response);
+            }
+
             if (!error) {
-                if (response.headers['content-type'].indexOf('application/json') > -1) {
-                    data = JSON.parse(data);
-                    if (process.env.BSRECORD) {
-                        let fs = require('fs-extra');
-                        let filepath = require('url').parse(response.req.path).pathname.slice(1);
-                        fs.ensureDir(path.dirname(path.join(__dirname, '../test/fixtures', filepath)));
-                        fs.writeJSONFileSync(path.join(__dirname, '../test/fixtures', filepath), data);
-                    }
+                data = JSON.parse(data);
+                if (process.env.BSRECORD) {
+                    let fs = require('fs-extra');
+                    let filepath = require('url').parse(response.req.path).pathname.slice(1);
+                    fs.ensureDir(path.dirname(path.join(__dirname, '../test/fixtures', filepath)));
+                    fs.writeJSONFileSync(path.join(__dirname, '../test/fixtures', filepath), data);
                 }
                 return opts.cb(data, response);
             }
@@ -33,4 +36,8 @@ function (opts) {
             return opts.error(error);
         }
     );
+
+    function isJson (res) {
+        return res.headers['content-type'].indexOf('application/json') > -1;
+    }
 };
