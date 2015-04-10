@@ -1,4 +1,4 @@
-var fs   = require('fs-extra');
+
 var path = require('path');
 
 module.exports =
@@ -21,6 +21,7 @@ function (opts) {
                 if (response.headers['content-type'].indexOf('application/json') > -1) {
                     data = JSON.parse(data);
                     if (process.env.BSRECORD) {
+                        let fs = require('fs-extra');
                         let filepath = require('url').parse(response.req.path).pathname.slice(1);
                         fs.ensureDir(path.dirname(path.join(__dirname, '../test/fixtures', filepath)));
                         fs.writeJSONFileSync(path.join(__dirname, '../test/fixtures', filepath), data);
