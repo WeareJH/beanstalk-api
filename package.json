@@ -1,0 +1,29 @@
+{
+  "name": "beanstalk-api",
+  "version": "1.0.0",
+  "description": "Node JS / IO JS wrapper for the Beanstalk API",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "fs-extra": "^0.18.0",
+    "jshint": "^2.6.3",
+    "mocha": "^2.2.4",
+    "babel": "^5.0.10"
+  },
+  "scripts": {
+    "lint": "jshint src/*/*.js",
+    "es6": "babel src --out-dir .",
+    "es6-watch": "babel src --out-dir . --watch",
+    "unit": "npm run es6 && mocha --recursive test",
+    "test": "npm run lint && npm run unit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "object-assign": "^2.0.0",
+    "q": "^1.2.0"
+  }
+}

@@ -1,0 +1,9 @@
+.coveralls.yml
+.idea
+npm-debug.log
+npm-log*
+node_modules
+test/
+lib/specs/
+example.js
+creds.json
